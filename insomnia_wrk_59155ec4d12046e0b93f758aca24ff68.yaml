@@ -1,0 +1,956 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: ColegiosApi
+meta:
+  id: wrk_59155ec4d12046e0b93f758aca24ff68
+  created: 1776658754863
+  modified: 1789092177578
+  description: ""
+collection:
+  - url: http://localhost:8080/login
+    name: Login
+    meta:
+      id: req_ad09d81135cd4ae0b1d68de579cc54af
+      created: 1776659749091
+      modified: 1788072098782
+      isPrivate: false
+      description: ""
+      sortKey: -1776659749091
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nombreUsuario": "Gabo",
+        	"contrasenia": "1234567"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    scripts:
+      afterResponse: |-
+        const response = insomnia.response.json();
+
+        insomnia.environment.set("token", response.token);
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: ""
+    name: New Request
+    meta:
+      id: req_1268da4202f14eb6ad9374c586453a7c
+      created: 1788319482577
+      modified: 1788360999473
+      isPrivate: false
+      description: ""
+      sortKey: -1788319482577
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - name: Usuario
+    meta:
+      id: fld_b6cf91e7e32b45e19002814544780df9
+      created: 1776658955950
+      modified: 1776660281407
+      sortKey: -1776658955950
+      description: ""
+    children:
+      - url: http://localhost:8080/usuarios/listar
+        name: listarUsuarios
+        meta:
+          id: req_e3fc2b2fdc8e405bbd38ec5f3c4f6a6d
+          created: 1776658961619
+          modified: 1782271344748
+          isPrivate: false
+          description: ""
+          sortKey: -1776658961619
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/usuarios/crear
+        name: CrearUsuario
+        meta:
+          id: req_e4b93901661f44fdbfdb311ead42d08a
+          created: 1776659179019
+          modified: 1785902289302
+          isPrivate: false
+          description: ""
+          sortKey: -1776659179019
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nombreUsuario": "GaboApp",
+                "nombre": "Gabo",
+                "apellido": "vasquez",
+                "email": "GaboApp@example.com",
+                "telefono": "31905967",
+                "fechaNacimiento": "1995-08-15",
+                "contrasenia": "1234567",
+                "idRoles": [1]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/usuarios/listar-por-rol/super_admin
+        name: ListarPorRol
+        meta:
+          id: req_ada387d9e97c466989ae0afd0a29fbac
+          created: 1779073483754
+          modified: 1784485402852
+          isPrivate: false
+          description: ""
+          sortKey: -1779073483754
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/usuarios/desactivar/Maria
+        name: DesactivarUsuario
+        meta:
+          id: req_61a3cad049894a90a480192321150d16
+          created: 1782271379109
+          modified: 1782608776869
+          isPrivate: false
+          description: ""
+          sortKey: -1782271379109
+        method: PATCH
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/usuarios/asignar/roles
+        name: AsignarRoles
+        meta:
+          id: req_af1007ec251d4c248607dd7df324245b
+          created: 1782608769214
+          modified: 1782609079680
+          isPrivate: false
+          description: ""
+          sortKey: -1782608769214
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreUsuario": "Maqueto",
+            	"idRoles": [1,2,3]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Roles
+    meta:
+      id: fld_735769517190490eaae6f4331cd8da23
+      created: 1776659531121
+      modified: 1776659531121
+      sortKey: -1776659531121
+      description: ""
+    children:
+      - url: http://localhost:8080/roles/listar
+        name: ListarRol
+        meta:
+          id: req_b136fa11a20c4545aa39b3feccaef3ec
+          created: 1776659534578
+          modified: 1782227062894
+          isPrivate: false
+          description: ""
+          sortKey: -1776659534578
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: ""
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/roles/crear-rol
+        name: CrearRol
+        meta:
+          id: req_0252b9c3821145bfb7b4dc554ce51142
+          created: 1776659585899
+          modified: 1784039161273
+          isPrivate: false
+          description: ""
+          sortKey: -1776659585899
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "nombreRol": "DIRECTOR",
+              "descripcion": "unicamente para el director del establecimiento, tiene algunos accesos de administrador."
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Alumnos
+    meta:
+      id: fld_88d0bc29052841d8b51138a03b23bb78
+      created: 1777135283277
+      modified: 1777135283277
+      sortKey: -1777135283277
+      description: ""
+    children:
+      - url: http://localhost:8080/alumno/cargar-masivo
+        name: CrearUsuarioMasivo
+        meta:
+          id: req_7170eef05808407084c81a957fac0117
+          created: 1776659336179
+          modified: 1786460040619
+          isPrivate: false
+          description: ""
+          sortKey: -1777135701574
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: archivo
+              value: ""
+              description: ""
+              disabled: false
+              fileName: /Users/gabo/Library/Mobile
+                Documents/com~apple~CloudDocs/JAVA/COLEGIOS/PLANTILLAS/4MA.pdf
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          disabled: false
+          token: "{{ token }}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/alumno/listar
+        name: listarAlumnos
+        meta:
+          id: req_9ad2233576d0410f841a50cf493f0827
+          created: 1777135287454
+          modified: 1779121326584
+          isPrivate: false
+          description: ""
+          sortKey: -1777135287554
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/alumno/buscar/I934KBH
+        name: ListarPorCodigo
+        meta:
+          id: req_f6a053a242d646488bcf176abcdf61c4
+          created: 1777135701524
+          modified: 1777142523100
+          isPrivate: false
+          description: ""
+          sortKey: -1777135701524
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHYWJvIiwicm9sIjoiUk9MRV9BRE1JTiIsImV4cCI6MTc3NzE4NTU0MiwiaWF0IjoxNzc3MTQyMzQyfQ.cC8nTyHdn8pOEOLtDW8-jOCgcWwxPbMPAznGrYFWn6g
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/alumno/crear
+        name: CrearUsuarioAlumno
+        meta:
+          id: req_47cfd993ac4846bba997872f03d54812
+          created: 1777262403689
+          modified: 1784485240309
+          isPrivate: false
+          description: ""
+          sortKey: -1777135701624
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nombreUsuario": "A123XYZ",
+                "nombre": "",
+                "apellido": "LOPEZ MARTINEZ",
+                "email": "A123XYZcorreo.com",
+                "telefono": "",
+                "fechaNacimiento": "2009-03-15",
+                "contrasenia": "1234567",
+                "codigoAlumno": "A123XYZ",
+            	    "genero": "M"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/alumno/buscar-por-nombre/Mar
+        name: BuscarPorNombre
+        meta:
+          id: req_9f9baadf7f3f4d458680745c5a91100b
+          created: 1779121333295
+          modified: 1779125947837
+          isPrivate: false
+          description: ""
+          sortKey: -1779121333295
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/alumno/convertir
+        name: ConvertirAlumno
+        meta:
+          id: req_be1b93ee972e42cda060fe55c57737b3
+          created: 1784485232086
+          modified: 1784485610018
+          isPrivate: false
+          description: ""
+          sortKey: -1784485232086
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreUsuario": "Marcos",
+            	"codigoAlumno": "ABC123",
+            	"genero": "MASCULINO"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Grados
+    meta:
+      id: fld_e7db954096bb414a84389c024bf3bd30
+      created: 1777351386784
+      modified: 1777351386784
+      sortKey: -1777351386784
+      description: ""
+    children:
+      - url: http://localhost:8080/grado/listar
+        name: ListarGrados
+        meta:
+          id: req_27ee0842b555401a8a1a17e399f947ca
+          created: 1777351390293
+          modified: 1784047233321
+          isPrivate: false
+          description: ""
+          sortKey: -1777351390293
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/grado/crear
+        name: CrearGrado
+        meta:
+          id: req_d0d091d55b0c428f855b8eec563a096f
+          created: 1777351495337
+          modified: 1784047507571
+          isPrivate: false
+          description: ""
+          sortKey: -1777351495337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"nombreGrado": "CUARTO",
+            		"nombreSeccion": "D",
+            		"nombreEspecialidad": "MECANICA"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/grado/desactivar
+        name: DesactivarGrado
+        meta:
+          id: req_3bd9545e217340429cb1f6e4fb9ec0b5
+          created: 1784131976151
+          modified: 1784132112380
+          isPrivate: false
+          description: ""
+          sortKey: -1784131976151
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreGrado": "CUARTO",
+            		"nombreSeccion": "D",
+            		"nombreEspecialidad": "MECANICA"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Maestros
+    meta:
+      id: fld_efa106d33200432c8815b67557f91374
+      created: 1778768893937
+      modified: 1778768893937
+      sortKey: -1778768893937
+      description: ""
+    children:
+      - url: http://localhost:8080/maestro/listar
+        name: ListarMaestros
+        meta:
+          id: req_fe9c72d5f983470f9c1f25b68809684d
+          created: 1778768908862
+          modified: 1785941629660
+          isPrivate: false
+          description: ""
+          sortKey: -1778768908862
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/maestro/crear
+        name: CrearMaestro
+        meta:
+          id: req_77b23d9fad2f405c895d510635292575
+          created: 1778994331901
+          modified: 1785939781813
+          isPrivate: false
+          description: ""
+          sortKey: -1778994331901
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "nombreUsuario": "alvaro",
+                "nombre": "alvaro",
+                "apellido": "alvaro",
+                "email": "alvaro@example.com",
+                "telefono": "31905967",
+                "fechaNacimiento": "1995-08-12",
+                "contrasenia": "1234567",
+            	 "codigoEmpleado": "MA-01"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/maestros/asignar-maestro
+        name: AsignarRolMaestro
+        meta:
+          id: req_f8d8a21aef8e459583e6a8e5277f6782
+          created: 1779060876392
+          modified: 1779060941373
+          isPrivate: false
+          description: ""
+          sortKey: -1779060876392
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/maestros/crear/masivo
+        name: CrearMaestrosMasivo
+        meta:
+          id: req_3b685c88e0ff4dfcb4457dae8d9723c6
+          created: 1779463033672
+          modified: 1786114027429
+          isPrivate: false
+          description: ""
+          sortKey: -1779463033672
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: maestros
+              value: ""
+              description: ""
+              disabled: false
+              fileName: /Users/gabo/JAVA/COLEGIOS/PLANTILLAS/maestros.xlsx
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/maestro/convertir
+        name: ConvertirAMaestro
+        meta:
+          id: req_e1320378a68e4b7487f43f457bf3af0e
+          created: 1786114020102
+          modified: 1786115693962
+          isPrivate: false
+          description: ""
+          sortKey: -1786114020102
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreUsuario": "H187AFJ",
+            	"codigoEmpleado": "MA-01"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: DetallePago
+    meta:
+      id: fld_940127d1872c49f99f6ab22dd28678f0
+      created: 1779724175213
+      modified: 1779724175213
+      sortKey: -1779724175213
+      description: ""
+    children:
+      - url: http://localhost:8080/pago/pagar-meses
+        name: CrearPago
+        meta:
+          id: req_64c57445283c490a955286ceeb166b80
+          created: 1779724178977
+          modified: 1788839314147
+          isPrivate: false
+          description: ""
+          sortKey: -1779724178977
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "total": 50,
+              "cantidadDeMeses": "",
+              "descripcion":  "pago por mes de julio",
+              "nombreUsuario": "",
+              "correoUsuario": "",
+              "tipoDePago": "",
+              "meses": [
+            	  {
+                	"idMes": 1,
+                	"nombreMes": "" 
+            	  }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/pago/pago-extra
+        name: CrearPagoExtra
+        meta:
+          id: req_8d0a3d25706f4e6f9e3fc62c42d4807f
+          created: 1783695972447
+          modified: 1783697759360
+          isPrivate: false
+          description: ""
+          sortKey: -1783695972447
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"total": 12,
+            	"descripcion": "descripcion",
+            	"idUsuario": 1,
+            	"idPago": 1,
+            	"idPagoExtra": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Materias
+    meta:
+      id: fld_ba292a176f6a46c5b60343709ebf14b3
+      created: 1786460026167
+      modified: 1786460026167
+      sortKey: -1786460026167
+      description: ""
+    children:
+      - url: http://localhost:8080/materias/prueba
+        name: pruebaMateria
+        meta:
+          id: req_7ec33e7e97c94ddda2fd2f9dd4aec8b9
+          created: 1786460032650
+          modified: 1788361026389
+          isPrivate: false
+          description: ""
+          sortKey: -1786460032650
+        method: GET
+        body:
+          mimeType: multipart/form-data
+          params:
+            - name: MATERIAS
+              value: ""
+              description: ""
+              disabled: false
+              fileName: /Users/gabo/JAVA/COLEGIOS/PLANTILLAS/MATERIAS.xlsx
+              type: file
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/materias/crear
+        name: crearMateria
+        meta:
+          id: req_bbad743fec1242d3ac6746aa583bb49f
+          created: 1788361019946
+          modified: 1788368902220
+          isPrivate: false
+          description: ""
+          sortKey: -1788361019946
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nombreMateria": "",
+            	"especialidad": "computacion",
+            	"grado": "cuarto",
+            	"codigoProfesor": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: bearer
+          token: "{{token}}"
+          prefix: Bearer
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_795c948abd1daa15a3a68f180feb11dc19efefe8
+    created: 1776658754864
+    modified: 1789051112266
+environments:
+  name: Base Environment
+  meta:
+    id: env_795c948abd1daa15a3a68f180feb11dc19efefe8
+    created: 1776658754863
+    modified: 1789051112267
+    isPrivate: false
+  data:
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHYWJvIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfQUxVTU5PIiwiUk9MRV9ESVJFQ1RPUiIsIlJPTEVfTUFFU1RSTyIsIlJPTEVfU1VQRVJfQURNSU4iXSwiZXhwIjoxNzg5MDk0MzExLCJpYXQiOjE3ODkwNTExMTF9.WvvxNXhjhZCv7EqRHDXLczRoUHy4OsyKZ_qocmo-DHI
