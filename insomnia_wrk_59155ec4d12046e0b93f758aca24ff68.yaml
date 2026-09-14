@@ -12,7 +12,7 @@ collection:
     meta:
       id: req_ad09d81135cd4ae0b1d68de579cc54af
       created: 1776659749091
-      modified: 1788072098782
+      modified: 1789349867452
       isPrivate: false
       description: ""
       sortKey: -1776659749091
@@ -36,24 +36,6 @@ collection:
         const response = insomnia.response.json();
 
         insomnia.environment.set("token", response.token);
-    settings:
-      renderRequestBody: true
-      encodeUrl: true
-      followRedirects: global
-      cookies:
-        send: true
-        store: true
-      rebuildPath: true
-  - url: ""
-    name: New Request
-    meta:
-      id: req_1268da4202f14eb6ad9374c586453a7c
-      created: 1788319482577
-      modified: 1788360999473
-      isPrivate: false
-      description: ""
-      sortKey: -1788319482577
-    method: GET
     settings:
       renderRequestBody: true
       encodeUrl: true
@@ -102,7 +84,7 @@ collection:
         meta:
           id: req_e4b93901661f44fdbfdb311ead42d08a
           created: 1776659179019
-          modified: 1785902289302
+          modified: 1789355758550
           isPrivate: false
           description: ""
           sortKey: -1776659179019
@@ -118,7 +100,16 @@ collection:
                 "telefono": "31905967",
                 "fechaNacimiento": "1995-08-15",
                 "contrasenia": "1234567",
-                "idRoles": [1]
+                "roles": [
+            		 {
+            			"idRol": 1,
+            			"nombreRol": "ADMIN"
+            		 },
+            		 {
+            			"idRol": 2,
+            			"nombreRol": "SUPER_ADMIN"
+            		 }
+            	 ]
             }
         headers:
           - name: Content-Type
@@ -787,7 +778,7 @@ collection:
         meta:
           id: req_64c57445283c490a955286ceeb166b80
           created: 1779724178977
-          modified: 1788839314147
+          modified: 1789355111652
           isPrivate: false
           description: ""
           sortKey: -1779724178977
@@ -796,16 +787,19 @@ collection:
           mimeType: application/json
           text: |-
             {
-              "total": 50,
-              "cantidadDeMeses": "",
-              "descripcion":  "pago por mes de julio",
-              "nombreUsuario": "",
-              "correoUsuario": "",
-              "tipoDePago": "",
+              "total": 100.00,
+              "descripcion":  "pago por marzo y abril",
+              "nombreUsuario": "Gabo",
+              "correoUsuario": "angel@example.com",
+              "tipoDePago": "efectivo",
               "meses": [
             	  {
-                	"idMes": 1,
-                	"nombreMes": "" 
+                	"idMes": 3,
+                	"nombreMes": "Marzo" 
+            	  },
+            	  	{
+                	"idMes": 4,
+                	"nombreMes": "Abril" 
             	  }
               ]
             }
@@ -833,7 +827,7 @@ collection:
         meta:
           id: req_8d0a3d25706f4e6f9e3fc62c42d4807f
           created: 1783695972447
-          modified: 1783697759360
+          modified: 1789354857902
           isPrivate: false
           description: ""
           sortKey: -1783695972447
@@ -842,11 +836,12 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"total": 12,
-            	"descripcion": "descripcion",
-            	"idUsuario": 1,
-            	"idPago": 1,
-            	"idPagoExtra": 1
+              "total": 60.00,
+              "descripcion":  "pago por inscripcion del 2026",
+              "nombreUsuario": "Gabo",
+              "correoUsuario": "angel@example.com",
+              "tipoPago": "efectivo",
+              "pagoExtra": "INSCRIPCIONES"
             }
         headers:
           - name: Content-Type
@@ -944,13 +939,13 @@ cookieJar:
   meta:
     id: jar_795c948abd1daa15a3a68f180feb11dc19efefe8
     created: 1776658754864
-    modified: 1789051112266
+    modified: 1789355689801
 environments:
   name: Base Environment
   meta:
     id: env_795c948abd1daa15a3a68f180feb11dc19efefe8
     created: 1776658754863
-    modified: 1789051112267
+    modified: 1789355689802
     isPrivate: false
   data:
-    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHYWJvIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfQUxVTU5PIiwiUk9MRV9ESVJFQ1RPUiIsIlJPTEVfTUFFU1RSTyIsIlJPTEVfU1VQRVJfQURNSU4iXSwiZXhwIjoxNzg5MDk0MzExLCJpYXQiOjE3ODkwNTExMTF9.WvvxNXhjhZCv7EqRHDXLczRoUHy4OsyKZ_qocmo-DHI
+    token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHYWJvIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfQUxVTU5PIiwiUk9MRV9ESVJFQ1RPUiIsIlJPTEVfTUFFU1RSTyIsIlJPTEVfU1VQRVJfQURNSU4iXSwiZXhwIjoxNzg5Mzk4ODg5LCJpYXQiOjE3ODkzNTU2ODl9.nFTdhfRiX-XxFIvf_aEJZW_WS4j6Fas0yBy2ckvPXpU
